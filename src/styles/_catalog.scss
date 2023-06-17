@@ -1,7 +1,9 @@
-.catalog {
-  display: flex;
-  flex-wrap: wrap;
+$width-column: 200px;
 
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(1, $width-column);
+  gap: 48px;
   max-width: 944px;
   margin: 0 auto;
 
@@ -13,10 +15,18 @@
     height: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 48px;
   }
+}
 
-  &__card:not(:nth-child(4n)) {
-    margin-right: 48px;
+$width: 
+  488px 2,
+  768px 3,
+  1024px 4;
+
+@each $size, $column in $width {
+  @media (min-width: $size) {
+    .catalog {
+      grid-template-columns: repeat($column, $width-column);
+    }
   }
 }
